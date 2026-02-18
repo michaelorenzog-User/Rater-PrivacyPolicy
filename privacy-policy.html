@@ -48,7 +48,7 @@
 <div class="summary-box">
   <p><strong>At a Glance</strong></p>
   <ul>
-    <li>Photos are analyzed <strong>entirely on your device</strong> and are <strong>never uploaded</strong> to our servers.</li>
+    <li>Photos are sent to our secure server for analysis and are <strong>never stored</strong> after processing is complete.</li>
     <li>We do <strong>not</strong> collect your real name, phone number, email address, or physical address.</li>
     <li>We do <strong>not</strong> sell your personal data.</li>
     <li>Uninstalling the App permanently deletes all locally stored data.</li>
@@ -73,7 +73,7 @@
 
 <h3>1.2 User-Provided Content</h3>
 <ul>
-  <li><strong>Photos.</strong> Photos captured or selected by users for facial analysis are processed entirely on your device using on-device machine learning (Google ML Kit). Photos are <strong>never uploaded to, transmitted to, or stored on</strong> any external server controlled by us or any third party.</li>
+  <li><strong>Photos.</strong> Photos captured or selected by users for facial analysis are transmitted securely to our server infrastructure (hosted on Cloudflare Workers) and forwarded to OpenAI&rsquo;s API for AI-based facial analysis. Photos are processed in real time and are <strong>not stored</strong> on any server after analysis is complete. Analysis results are stored <strong>locally on your device only</strong>.</li>
   <li><strong>Optional demographic information</strong> (e.g., gender), which may be provided voluntarily during onboarding. This information is stored locally on your device and is not transmitted externally.</li>
 </ul>
 
@@ -92,13 +92,15 @@
 <p><strong>Information we do not collect.</strong> We do not require or collect your real name, email address, phone number, physical address, or precise geolocation. No user account or sign-in is required to use the App.</p>
 
 <!-- ===== SECTION 2 ===== -->
-<h2>2. On-Device Processing</h2>
+<h2>2. How Photos Are Processed</h2>
 
-<p>All facial analysis in Rater is performed <strong>entirely on your device</strong> using Google ML Kit, an on-device machine-learning framework. Specifically:</p>
+<p>When you take or select a photo for analysis, the following occurs:</p>
 <ul>
-  <li>Your photos are <strong>never</strong> sent to, uploaded to, or stored on any external server.</li>
+  <li>Your photo is <strong>encrypted in transit</strong> (TLS/SSL) and sent to our server infrastructure, hosted on <strong>Cloudflare Workers</strong>, a globally distributed edge-computing platform.</li>
+  <li>Our server forwards the photo to <strong>OpenAI&rsquo;s API</strong> (GPT-4o-mini) for AI-based facial aesthetics analysis. OpenAI processes the image in accordance with their <a href="https://openai.com/policies/api-data-usage-policies" target="_blank" rel="noopener noreferrer">API Data Usage Policy</a>, which states that API inputs are <strong>not used to train their models</strong>.</li>
+  <li>Photos are processed in real time and are <strong>not stored</strong> on our server or OpenAI&rsquo;s servers after analysis is complete.</li>
   <li>All analysis results, scan history, and related user data are stored <strong>locally on your device only</strong> and are not accessible to us.</li>
-  <li>Because all content is stored locally, <strong>uninstalling the App will permanently and irreversibly delete</strong> all locally stored data, including photos, scan history, and analysis results.</li>
+  <li>Because all results are stored locally, <strong>uninstalling the App will permanently and irreversibly delete</strong> all locally stored data, including scan history and analysis results.</li>
 </ul>
 
 <!-- ===== SECTION 3 ===== -->
@@ -132,9 +134,11 @@
 
 <p>We may share limited information with the following categories of service providers, strictly for the purposes described in this Privacy Policy:</p>
 <ul>
+  <li><strong>Cloudflare</strong> &mdash; Our server infrastructure runs on Cloudflare Workers. Cloudflare processes and routes photo data to our AI provider for analysis. Photos are not stored after processing. For more information, see <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare&rsquo;s Privacy Policy</a>.</li>
+  <li><strong>OpenAI</strong> &mdash; Provides AI-based facial analysis via their API. Photos are sent for real-time analysis and are not stored or used for model training. For more information, see <a href="https://openai.com/policies/api-data-usage-policies" target="_blank" rel="noopener noreferrer">OpenAI&rsquo;s API Data Usage Policy</a>.</li>
   <li><strong>RevenueCat</strong> &mdash; A third-party subscription-management platform. RevenueCat receives anonymous device identifiers and transaction data solely to process and manage in-app subscriptions. For more information, see <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">RevenueCat&rsquo;s Privacy Policy</a>.</li>
+  <li><strong>Sentry</strong> &mdash; A crash-reporting and error-monitoring service. Sentry receives crash logs, stack traces, and basic device information for identifying and resolving technical issues. No photos or facial analysis data are sent to Sentry. For more information, see <a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer">Sentry&rsquo;s Privacy Policy</a>.</li>
   <li><strong>Analytics Providers</strong> &mdash; To collect aggregate, anonymized usage data for app-performance analysis.</li>
-  <li><strong>Crash-Reporting Tools</strong> &mdash; To receive crash logs and diagnostics for identifying and resolving technical issues.</li>
 </ul>
 
 <p>All service providers are bound by contractual obligations to process your data only for the purposes specified, to maintain appropriate security measures, and to comply with applicable data-protection laws.</p>
@@ -172,8 +176,8 @@
 
 <p>We implement appropriate technical and organizational safeguards designed to protect the personal information we process:</p>
 <ul>
-  <li>All data transmitted to third-party services (such as RevenueCat) is encrypted in transit using industry-standard TLS/SSL protocols.</li>
-  <li>Facial analysis data and photos remain on your device and are never transmitted over any network. The security of that data is governed by the security measures of your device and operating system.</li>
+  <li>All data transmitted to third-party services (such as Cloudflare, OpenAI, and RevenueCat) is encrypted in transit using industry-standard TLS/SSL protocols.</li>
+  <li>Photos sent for analysis are processed in real time and are not stored on any server after analysis. Analysis results are stored locally on your device, and the security of that data is governed by the security measures of your device and operating system.</li>
 </ul>
 
 <p>While we employ commercially reasonable measures to protect your information, no method of electronic transmission or storage is entirely secure. We cannot guarantee absolute security, and you use the App at your own risk.</p>
@@ -217,7 +221,7 @@
 
 <p>Where such transfers occur, we ensure that appropriate safeguards are in place&mdash;including standard contractual clauses approved by the European Commission, where applicable&mdash;to protect your personal data in accordance with this Privacy Policy and applicable law.</p>
 
-<p>Facial analysis data and photos remain on your device and are <strong>not</strong> transferred internationally.</p>
+<p>Photos sent for facial analysis may be processed by servers located outside your country of residence, including in the United States. These transfers are encrypted in transit and photos are not stored after processing.</p>
 
 <!-- ===== SECTION 11 ===== -->
 <h2>11. Do Not Track Signals</h2>
